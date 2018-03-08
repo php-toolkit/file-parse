@@ -24,7 +24,7 @@ class IniParser extends BaseParser
      * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
      */
-    protected static function doParse($string, $enhancement = false, callable $pathHandler = null, $fileDir = '')
+    protected static function doParse($string, $enhancement = false, callable $pathHandler = null, string $fileDir = ''): array
     {
         if (!$string) {
             return [];
@@ -40,8 +40,8 @@ class IniParser extends BaseParser
         /*
          * Parse special keywords
          *
-         * extend = ../parent.yml
-         * db = import#../db.yml
+         * extend = ../parent.ini
+         * db = import#../db.ini
          * [cache]
          * debug = reference#debug
          */
@@ -72,7 +72,7 @@ class IniParser extends BaseParser
                 }
 
                 if (0 === strpos($item, self::IMPORT_KEY . '#')) {
-                    $importFile = trim(substr($item, 6));
+                    $importFile = trim(substr($item, 7));
 
                     // if needed custom handle $importFile path. e.g: Maybe it uses custom alias path
                     if ($pathHandler && \is_callable($pathHandler)) {

@@ -8,7 +8,7 @@
 
 namespace MyLib\FileParse;
 
-use Inhere\Library\Helpers\JsonHelper;
+use MyLib\StrUtil\JsonHelper;
 
 /**
  * Class JsonParser
@@ -26,7 +26,7 @@ class JsonParser extends BaseParser
      * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
      */
-    protected static function doParse($string, $enhancement = false, callable $pathHandler = null, $fileDir = '')
+    protected static function doParse($string, $enhancement = false, callable $pathHandler = null, string $fileDir = ''): array
     {
         if (!$string) {
             return [];

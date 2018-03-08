@@ -30,8 +30,8 @@ abstract class BaseParser
         $string,
         $enhancement = false,
         callable $pathHandler = null,
-        $fileDir = ''
-    );
+        string $fileDir = ''
+    ): array;
 
     /**
      * @param $string
@@ -40,7 +40,7 @@ abstract class BaseParser
      * @param string $fileDir
      * @return array
      */
-    public static function parse($string, $enhancement = false, callable $pathHandler = null, $fileDir = '')
+    public static function parse($string, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
         if (is_file($string)) {
             return self::parseFile($string, $enhancement, $pathHandler, $fileDir);
@@ -57,7 +57,7 @@ abstract class BaseParser
      * @return array
      * @throws \InvalidArgumentException
      */
-    public static function parseFile($file, $enhancement = false, callable $pathHandler = null, $fileDir = '')
+    public static function parseFile($file, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
         if (!is_file($file)) {
             throw new \InvalidArgumentException("Target file [$file] not exists");
@@ -76,7 +76,7 @@ abstract class BaseParser
      * @param string $fileDir
      * @return array
      */
-    public static function parseString($string, $enhancement = false, callable $pathHandler = null, $fileDir = '')
+    public static function parseString($string, $enhancement = false, callable $pathHandler = null, $fileDir = ''): array
     {
         return static::doParse($string, $enhancement, $pathHandler, $fileDir);
     }
